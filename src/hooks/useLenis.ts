@@ -1,36 +1,37 @@
-import { useEffect } from "react";
-import Lenis from "lenis";
-import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
+import { useEffect, useRef } from "react";
+import Lenis from "@studio-freight/lenis";
+import gsap from "gsap";
 
-export function useLenis() {
-  const prefersReducedMotion = usePrefersReducedMotion();
+export function useLenis(pathname: string) {
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    if (prefersReducedMotion || typeof window === "undefined") {
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+    });
+
+    lenisRef.current = lenis;
+
+    const update = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(update);
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      gsap.ticker.remove(update);
+      lenis.destroy();
+      lenisRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!lenisRef.current) {
       return;
     }
 
-    const lenis = new Lenis({
-      duration: 1.05,
-      smoothWheel: true,
-      syncTouch: false,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1,
-      lerp: 0.08,
-    });
-
-    let rafId = 0;
-
-    const raf = (time: number) => {
-      lenis.raf(time);
-      rafId = window.requestAnimationFrame(raf);
-    };
-
-    rafId = window.requestAnimationFrame(raf);
-
-    return () => {
-      window.cancelAnimationFrame(rafId);
-      lenis.destroy();
-    };
-  }, [prefersReducedMotion]);
+    lenisRef.current.scrollTo(0, { immediate: true });
+  }, [pathname]);
 }
