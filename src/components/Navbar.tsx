@@ -27,7 +27,7 @@ export function Navbar() {
         className={`mx-auto flex w-full max-w-7xl items-center justify-between border border-transparent px-6 ${compact ? "bg-bg/80 border-border backdrop-blur-md" : "bg-transparent"}`}
       >
         <Link to="/" className="font-mono text-label text-text2" data-cursor="interactive">
-          YOUR NAME
+          RABIUL HASAN
         </Link>
 
         <nav className="hidden items-center gap-9 md:flex">
