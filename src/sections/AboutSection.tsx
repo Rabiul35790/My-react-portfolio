@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const bioText = "I design and build digital products that feel as good as they look.";
+const bioText = "I build digital products that focus on solving problem & feel as good as they look.";
 
 export function AboutSection() {
   const ref = useRef<HTMLElement | null>(null);
@@ -56,16 +56,17 @@ export function AboutSection() {
           ))}
         </h2>
         <p className="about-reveal mt-8 max-w-2xl font-body text-base leading-relaxed text-text2">
-          I work across product strategy, interface systems, and engineering delivery. Every interaction is designed with intent, restraint, and measurable user value.
+          I enjoy turning ideas into real digital products. From backend logic to user interfaces, I focus on building applications that are reliable, scalable, and simple to use.
         </p>
+
         <p className="about-reveal mt-4 max-w-2xl font-body text-base leading-relaxed text-text2">
-          My approach blends systems thinking with visual craft, so products ship faster and still feel premium.
+          My work combines problem-solving, clean engineering practices, and thoughtful design. The goal is always the same — ship software that works well, feels smooth, and delivers real value to users.
         </p>
       </div>
 
       <div className="about-reveal col-span-12 lg:col-span-5">
         <div className="space-y-5 border border-border bg-surface p-6">
-          {[{ n: "05", l: "Years Experience" }, { n: "30+", l: "Projects Shipped" }, { n: "∞", l: "Cups of Coffee" }].map((item) => (
+          {[{ n: "2+", l: "Years Experience" }, { n: "5+", l: "Projects Shipped" }, { n: "4", l: "Clients Served" }].map((item) => (
             <div key={item.l} className="border-b border-border pb-4 last:border-b-0 last:pb-0">
               <p className="font-display text-5xl text-primary">{item.n}</p>
               <p className="mt-1 font-mono text-label text-text2">{item.l}</p>
@@ -76,13 +77,14 @@ export function AboutSection() {
 
       <div className="about-reveal col-span-12 mt-8 flex flex-wrap gap-0 border-y border-border py-5 font-mono text-label text-text2">
         {[
+          "Laravel",
           "React",
-          "TypeScript",
-          "GSAP",
-          "Node.js",
-          "PostgreSQL",
-          "AWS",
-          "Figma"
+          "Typescript",
+          "Filament",
+          "Tailwind",
+          "RESTful API",
+          "Figma Plugin",
+          
         ].map((tool, index) => (
           <span key={tool} className="inline-flex items-center pr-4">
             {index > 0 && <span className="mr-4 h-4 w-px bg-border" aria-hidden />}
