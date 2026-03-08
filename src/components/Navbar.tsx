@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const links = [
   { href: "/#home", label: "Home", match: "home" },
   { href: "/#work", label: "Work", match: "work" },
   { href: "/#about", label: "About", match: "about" },
+  { href: "/#education", label: "Education", match: "education" },
   { href: "/#contact", label: "Contact", match: "contact" }
 ];
 
@@ -32,7 +33,9 @@ export function Navbar() {
 
         <nav className="hidden items-center gap-9 md:flex">
           {links.map((item) => {
-            const active = inWork ? item.match === "work" : location.hash.includes(item.match) || (location.pathname === "/" && item.match === "home" && !location.hash);
+            const active = inWork
+              ? item.match === "work"
+              : location.hash.includes(item.match) || (location.pathname === "/" && item.match === "home" && !location.hash);
             return (
               <Link
                 key={item.label}
