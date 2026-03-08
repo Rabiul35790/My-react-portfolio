@@ -4,6 +4,7 @@ export type Project = {
   title: string;
   year: string;
   role: string;
+  liveUrl: string;
   description: string;
   stack: string[];
   problem: string;
@@ -13,19 +14,20 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "atlas-analytics",
+    id: "ripplix",
     number: "01",
-    title: "Atlas Analytics",
-    year: "2026",
-    role: "Lead Frontend Engineer",
-    description: "Real-time product analytics platform with cinematic dashboard interactions.",
-    stack: ["React", "TypeScript", "GSAP", "Node", "PostgreSQL"],
-    problem: "The team needed to transform raw behavioral events into executive-level insight without sacrificing speed or clarity.",
-    solution: "Built a modular data-visualization system, optimized rendering paths, and designed a motion-led UI language that preserved readability under heavy data load.",
+    title: "Ripplix",
+    year: "2025-2026",
+    role: "Full-stack Software Developer",
+    liveUrl: "https://www.ripplix.com",
+    description: "A subscription-based platform providing a curated library of modern UI animations and micro-interactions for developers and designers.",
+    stack: ["React", "TypeScript", "Laravel", "Filament", "MySql"],
+    problem: "Designers and developers often struggle to find high-quality UI animation and micro-interaction references. Most inspiration is scattered across random websites, videos, and design galleries, making it slow and frustrating to discover the right interaction when building a product.",
+    solution: "Ripplix was built as a curated motion library that collects real UI animations and micro-interactions from modern apps and websites. The platform organizes thousands of interaction examples into searchable categories, allowing designers and developers to quickly discover, study, and apply proven motion patterns in their own products.",
     gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80"
+      "https://www.ripplix.com/images/og/og-default.png",
+      "https://www.ripplix.com/images/project1.png",
+      "https://www.ripplix.com/images/project2.png"
     ]
   },
   {
@@ -34,6 +36,7 @@ export const projects: Project[] = [
     title: "Nova Commerce",
     year: "2025",
     role: "Full-Stack Developer",
+    liveUrl: "https://example.com/nova-commerce",
     description: "High-conversion e-commerce storefront with immersive product storytelling.",
     stack: ["React", "Tailwind", "Laravel", "MySQL", "Stripe"],
     problem: "The existing storefront lacked hierarchy and trust signals, causing drop-off in key checkout moments.",
@@ -50,6 +53,7 @@ export const projects: Project[] = [
     title: "Pulse Studio",
     year: "2025",
     role: "UI Engineer",
+    liveUrl: "https://example.com/pulse-studio",
     description: "Portfolio CMS and media engine for a creative production studio.",
     stack: ["React", "GSAP", "Framer Motion", "Supabase", "Figma"],
     problem: "The studio needed a fast publishing workflow while keeping high visual craft across every case study page.",
@@ -66,6 +70,7 @@ export const projects: Project[] = [
     title: "Orbit Pay",
     year: "2024",
     role: "Frontend Developer",
+    liveUrl: "https://example.com/orbit-pay",
     description: "Fintech dashboard focused on transaction clarity and risk-aware decisioning.",
     stack: ["React", "TypeScript", "Tailwind", "Charting", "REST API"],
     problem: "Complex payment flows and unclear visual hierarchy made key financial actions difficult for operators.",

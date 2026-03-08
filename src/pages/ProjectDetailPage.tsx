@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+﻿import { Link, useParams } from "react-router-dom";
 import { projects } from "../data/projects";
 
 export default function ProjectDetailPage() {
@@ -30,6 +30,18 @@ export default function ProjectDetailPage() {
           <span>Year: {project.year}</span>
           <span>Role: {project.role}</span>
           <span>Stack: {project.stack.join(" / ")}</span>
+        </div>
+
+        <div className="mt-5">
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-wipe btn-wipe-solid inline-flex"
+            data-cursor="interactive"
+          >
+            <span>Live Preview</span>
+          </a>
         </div>
       </header>
 

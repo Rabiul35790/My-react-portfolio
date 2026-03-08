@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+﻿import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -60,11 +60,20 @@ export function AboutSection() {
         </p>
 
         <p className="about-reveal mt-4 max-w-2xl font-body text-base leading-relaxed text-text2">
-          My work combines problem-solving, clean engineering practices, and thoughtful design. The goal is always the same — ship software that works well, feels smooth, and delivers real value to users.
+          My work combines problem-solving, clean engineering practices, and thoughtful design. The goal is always the same - ship software that works well, feels smooth, and delivers real value to users.
         </p>
       </div>
 
       <div className="about-reveal col-span-12 lg:col-span-5">
+        <div className="profile-frame mb-5">
+          <img
+            src="/src/images/profile.png"
+            alt="Profile"
+            className="profile-image"
+            loading="lazy"
+          />
+        </div>
+
         <div className="space-y-5 border border-border bg-surface p-6">
           {[{ n: "2+", l: "Years Experience" }, { n: "5+", l: "Projects Shipped" }, { n: "4", l: "Clients Served" }].map((item) => (
             <div key={item.l} className="border-b border-border pb-4 last:border-b-0 last:pb-0">
@@ -76,21 +85,14 @@ export function AboutSection() {
       </div>
 
       <div className="about-reveal col-span-12 mt-8 flex flex-wrap gap-0 border-y border-border py-5 font-mono text-label text-text2">
-        {[
-          "Laravel",
-          "React",
-          "Typescript",
-          "Filament",
-          "Tailwind",
-          "RESTful API",
-          "Figma Plugin",
-          
-        ].map((tool, index) => (
-          <span key={tool} className="inline-flex items-center pr-4">
-            {index > 0 && <span className="mr-4 h-4 w-px bg-border" aria-hidden />}
-            {tool}
-          </span>
-        ))}
+        {["Laravel", "React", "Typescript", "Filament", "Tailwind", "RESTful API", "Figma Plugin", "MySql"].map(
+          (tool, index) => (
+            <span key={tool} className="inline-flex items-center pr-4">
+              {index > 0 && <span className="mr-4 h-4 w-px bg-border" aria-hidden />}
+              {tool}
+            </span>
+          )
+        )}
       </div>
     </section>
   );
