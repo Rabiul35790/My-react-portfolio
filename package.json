@@ -39,6 +39,7 @@
   },
   "reactSnap": {
     "source": "dist",
+    "port": 45731,
     "include": [
       "/",
       "/work/ripplix",
