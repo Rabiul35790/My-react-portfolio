@@ -119,11 +119,25 @@
   .ticker-track {
     display: flex;
     width: max-content;
-    animation: ticker 30s linear infinite;
+    flex-wrap: nowrap;
+    will-change: transform;
+    animation: ticker 52s linear infinite;
   }
 
-  .ticker-track span {
-    padding-right: 2rem;
+  .ticker-track:hover,
+  .ticker-track:focus-within {
+    animation-play-state: paused;
+  }
+
+  .ticker-segment {
+    display: flex;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
   }
 
   .route-curtain {
@@ -330,5 +344,14 @@
   .profile-frame,
   .profile-image {
     min-height: 18rem;
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }

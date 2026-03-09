@@ -67,7 +67,7 @@ export function AboutSection() {
       <div className="about-reveal col-span-12 lg:col-span-5">
         <div className="profile-frame mb-5">
           <img
-            src="/src/images/profile.png"
+            src="/images/profile.png"
             alt="Profile"
             className="profile-image"
             loading="lazy"

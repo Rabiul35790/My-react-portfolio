@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Github, Linkedin } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,8 +39,8 @@ export function HeroSection() {
 
   return (
     <section id="home" ref={ref} className="relative flex min-h-screen items-end overflow-hidden pt-28">
-      <div ref={bgRef} className="hero-glow" aria-hidden />
-      <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 pb-14">
+      <div ref={bgRef} className="hero-glow pointer-events-none" aria-hidden />
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-6 pb-14">
         <div>
           {lines.map((line, idx) => (
             <motion.h1
@@ -62,11 +63,7 @@ export function HeroSection() {
               ))}
             </motion.h1>
           ))}
-        </div>
-
-        <p className="max-w-3xl font-body text-lg tracking-wide text-text2">
-          Full-Stack Developer · UI Engineer · Creative Coder
-        </p>
+        </div>        <p className="max-w-3xl font-body text-lg tracking-wide text-text2">Full-Stack Software Developer | Problem Solver | Computer Science Graduate</p>
 
         <div className="mt-6 flex items-end justify-between">
           <div className="flex items-center gap-3">
@@ -74,19 +71,34 @@ export function HeroSection() {
             <span className="font-mono text-label text-text2">SCROLL</span>
           </div>
 
-          <div className="flex flex-col items-end gap-1 font-mono text-label text-text2">
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" data-cursor="interactive">
+          <div className="flex flex-col items-end gap-4 font-mono text-label text-text2">
+            <a
+              className="flex gap-1"
+              href="https://github.com/Rabiul35790/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="interactive"
+            >
+              <Github className="h-4 w-4" />
               GitHub
             </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" data-cursor="interactive">
+            <a
+              className="flex gap-1"
+              href="https://www.linkedin.com/in/mohammad-rabiul-hasan-173481209/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="interactive"
+            >
+              <Linkedin className="h-4 w-4" />
               LinkedIn
             </a>
-            <a href="https://x.com/yourusername" target="_blank" rel="noopener noreferrer" data-cursor="interactive">
+            {/* <a href="https://x.com/yourusername" target="_blank" rel="noopener noreferrer" data-cursor="interactive">
               Twitter
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
     </section>
   );
 }
+

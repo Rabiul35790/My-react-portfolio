@@ -1,13 +1,25 @@
-import { memo } from "react";
+﻿import { memo } from "react";
 
-const line = "REACT ◆ TYPESCRIPT ◆ NODE ◆ GSAP ◆ DESIGN ◆ MOTION ◆ TAILWIND ◆ POSTGRESQL ◆ AWS ◆ FIGMA ◆ NEXT.JS ◆ ";
+const baseItems = ["REACT", "TYPESCRIPT", "PREACT", "TAILWIND", "LARAVEL", "RESTFUL API", "FILAMENT", "MYSQL", "BLADE", "OAUTH", "NEXT.JS"];
+const loopItems = [...baseItems, ...baseItems, ...baseItems];
 
 function MarqueeBase() {
+  const renderSegment = (key: string) => (
+    <div className="ticker-segment" aria-hidden="true" key={key}>
+      {loopItems.map((item, index) => (
+        <span className="ticker-item" key={`${item}-${index}`}>
+          {item}
+          <span className="mx-3 text-primary/70">◆</span>
+        </span>
+      ))}
+    </div>
+  );
+
   return (
-    <section className="border-y border-border py-4" aria-label="Technology ticker">
+    <section className="overflow-hidden border-y border-border py-4" aria-label="Technology ticker">
       <div className="ticker-track font-mono text-sm uppercase tracking-wide text-text2">
-        <span>{line}</span>
-        <span>{line}</span>
+        {renderSegment("segment-a")}
+        {renderSegment("segment-b")}
       </div>
     </section>
   );
