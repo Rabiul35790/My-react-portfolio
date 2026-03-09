@@ -1,10 +1,49 @@
-﻿import { Link, useParams } from "react-router-dom";
+﻿import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { projects } from "../data/projects";
+import { removeJsonLd, setJsonLd, setPageSeo, toAbsoluteUrl } from "../utils/seo";
 
 export default function ProjectDetailPage() {
   const { id } = useParams();
   const projectIndex = projects.findIndex((project) => project.id === id);
   const project = projectIndex >= 0 ? projects[projectIndex] : null;
+
+  useEffect(() => {
+    if (!project) {
+      setPageSeo({
+        title: "Project Not Found | Rabiul Hasan",
+        description: "The requested project could not be found.",
+        path: `/work/${id ?? ""}`,
+        noindex: true
+      });
+      removeJsonLd("project-work-schema");
+      return;
+    }
+
+    setPageSeo({
+      title: `${project.title} | Work by Rabiul Hasan`,
+      description: project.description,
+      path: `/work/${project.id}`,
+      image: project.gallery[0],
+      type: "article"
+    });
+
+    setJsonLd("project-work-schema", {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      name: project.title,
+      description: project.description,
+      image: project.gallery.map((image) => toAbsoluteUrl(image)),
+      url: toAbsoluteUrl(`/work/${project.id}`),
+      creator: {
+        "@type": "Person",
+        name: "Rabiul Hasan"
+      },
+      datePublished: project.year
+    });
+
+    return () => removeJsonLd("project-work-schema");
+  }, [id, project]);
 
   if (!project) {
     return (
