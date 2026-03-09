@@ -39,49 +39,60 @@ export function Navbar() {
       return;
     }
 
-    const sectionIds = links.map((link) => link.match);
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => Boolean(section));
+    const ids = links.map((link) => link.match);
+    let frame = 0;
 
-    if (!sections.length) {
-      return;
-    }
+    const updateActiveFromScroll = () => {
+      frame = 0;
+      const probeLine = window.innerHeight * 0.35;
 
-    const visibleRatios = new Map<string, number>();
+      let bestId = "home";
+      let bestDistance = Number.POSITIVE_INFINITY;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const id = (entry.target as HTMLElement).id;
-          visibleRatios.set(id, entry.isIntersecting ? entry.intersectionRatio : 0);
+      for (const id of ids) {
+        const element = document.getElementById(id);
+        if (!element) {
+          continue;
         }
 
-        let topSection = "home";
-        let topRatio = 0;
+        const rect = element.getBoundingClientRect();
+        const containsProbe = rect.top <= probeLine && rect.bottom >= probeLine;
 
-        for (const [id, ratio] of visibleRatios.entries()) {
-          if (ratio > topRatio) {
-            topRatio = ratio;
-            topSection = id;
-          }
+        if (containsProbe) {
+          bestId = id;
+          bestDistance = -1;
+          break;
         }
 
-        if (topRatio > 0) {
-          setActiveSection((prev) => (prev === topSection ? prev : topSection));
+        const distance = Math.abs(rect.top - probeLine);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestId = id;
         }
-      },
-      {
-        threshold: [0.25, 0.45, 0.65],
-        rootMargin: "-20% 0px -35% 0px"
       }
-    );
 
-    for (const section of sections) {
-      observer.observe(section);
-    }
+      setActiveSection((prev) => (prev === bestId ? prev : bestId));
+    };
 
-    return () => observer.disconnect();
+    const requestUpdate = () => {
+      if (frame) {
+        return;
+      }
+      frame = window.requestAnimationFrame(updateActiveFromScroll);
+    };
+
+    requestUpdate();
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+    };
   }, [location.pathname]);
 
   const inWork = location.pathname.startsWith("/work/");
