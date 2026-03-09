@@ -68,8 +68,10 @@ export function setPageSeo({ title, description, path, image, type = "website", 
   upsertMetaByProperty("og:type", type);
   upsertMetaByProperty("og:url", canonicalUrl);
   upsertMetaByProperty("og:image", imageUrl);
+  upsertMetaByProperty("og:site_name", "Rabiul Hasan Portfolio");
 
   upsertMetaByName("twitter:card", "summary_large_image");
+  upsertMetaByName("twitter:url", canonicalUrl);
   upsertMetaByName("twitter:title", title);
   upsertMetaByName("twitter:description", description);
   upsertMetaByName("twitter:image", imageUrl);
@@ -93,4 +95,3 @@ export function setJsonLd(id: string, payload: Record<string, unknown>) {
 export function removeJsonLd(id: string) {
   document.getElementById(id)?.remove();
 }
-
