@@ -135,7 +135,7 @@ export function AboutSection() {
       </div>
 
       <div className="about-reveal col-span-12 mt-8 flex flex-wrap gap-0 border-y border-border py-5 font-mono text-label text-text2">
-        {["Laravel", "React", "Typescript", "Filament", "Tailwind", "RESTful API", "Figma Plugin", "MySql"].map(
+        {["Laravel", "React", "Typescript", "Filament", "Tailwind", "RESTful API", "Figma Plugin", "MySql", "C/C++", "Java", "Wordpress"].map(
           (tool, index) => (
             <span key={tool} className="inline-flex items-center pr-4">
               {index > 0 && <span className="mr-4 h-4 w-px bg-border" aria-hidden />}
