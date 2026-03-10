@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import Lenis from "@studio-freight/lenis";
+﻿import { useEffect, useRef } from "react";
+import Lenis from "lenis";
 import gsap from "gsap";
 
 export function useLenis(pathname: string) {
@@ -7,8 +7,11 @@ export function useLenis(pathname: string) {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.4,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      duration: 1.6,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1
     });
 
     lenisRef.current = lenis;

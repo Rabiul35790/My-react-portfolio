@@ -62,7 +62,7 @@
 
 @layer components {
   .hero-stroke {
-    -webkit-text-stroke: 1px var(--color-text-3);
+    -webkit-text-stroke: 1px #585858;
   }
 
   .hero-glow {

@@ -26,19 +26,6 @@ export function Navbar() {
       return;
     }
 
-    const hashId = location.hash.replace("#", "");
-    if (hashId) {
-      setActiveSection(hashId);
-    } else {
-      setActiveSection("home");
-    }
-  }, [location.pathname, location.hash]);
-
-  useEffect(() => {
-    if (location.pathname !== "/") {
-      return;
-    }
-
     const ids = links.map((link) => link.match);
     let frame = 0;
 
@@ -96,23 +83,30 @@ export function Navbar() {
   }, [location.pathname]);
 
   const inWork = location.pathname.startsWith("/work/");
+  const hashSection = location.pathname === "/" ? location.hash.replace("#", "") : "";
+  const navActiveSection = hashSection || activeSection;
 
   return (
     <header className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${compact ? "py-3" : "py-5"}`}>
       <div
-        className={`mx-auto flex w-full max-w-7xl items-center justify-between border px-6 ${
+        className={`mx-auto flex w-full max-w-7xl items-center justify-between px-6 ${
           compact
             ? "bg-bg/80 border-border backdrop-blur-md"
             : "border-border bg-bg/78 backdrop-blur-md md:border-transparent md:bg-transparent md:backdrop-blur-0"
         }`}
       >
-        <Link to="/" className="font-mono text-label text-text2" data-cursor="interactive">
-          RABIUL HASAN
+        <Link
+          to="/"
+          className={`inline-flex items-center ${compact ? "-ml-1" : ""}`}
+          data-cursor="interactive"
+          aria-label="Go to homepage"
+        >
+          <img src="/images/logo.png" alt="Rabiul Hasan logo" className="block h-8 w-auto md:h-10" loading="eager" />
         </Link>
 
         <nav className="hidden items-center gap-9 md:flex">
           {links.map((item) => {
-            const active = inWork ? item.match === "work" : activeSection === item.match;
+            const active = inWork ? item.match === "work" : navActiveSection === item.match;
             return (
               <Link
                 key={item.label}
