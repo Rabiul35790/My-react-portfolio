@@ -36,7 +36,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
+    <main className="overflow-x-hidden">
       <HeroSection />
       <Marquee />
       <WorkSection />
@@ -44,6 +44,6 @@ export default function HomePage() {
       <EducationSection />
       <ProcessSection />
       <ContactSection />
-    </>
+    </main>
   );
 }
