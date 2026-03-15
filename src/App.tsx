@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Cursor } from "./components/Cursor";
 import { Navbar } from "./components/Navbar";
@@ -21,6 +21,9 @@ function routeLabel(pathname: string) {
 export default function App() {
   const location = useLocation();
   useLenis(location.pathname);
+  const previousPathRef = useRef(location.pathname);
+  const [showCurtain, setShowCurtain] = useState(false);
+  const [curtainKey, setCurtainKey] = useState(0);
 
   useEffect(() => {
     if (location.pathname !== "/") {
@@ -37,6 +40,29 @@ export default function App() {
       target.scrollIntoView({ behavior: "auto", block: "start" });
     }
   }, [location.hash, location.pathname]);
+
+  useEffect(() => {
+    if (previousPathRef.current === location.pathname) {
+      return;
+    }
+
+    previousPathRef.current = location.pathname;
+    setCurtainKey((prev) => prev + 1);
+    setShowCurtain(true);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!showCurtain) {
+      return;
+    }
+
+    // Failsafe: never allow the fullscreen overlay to stay stuck.
+    const timeout = window.setTimeout(() => {
+      setShowCurtain(false);
+    }, 1300);
+
+    return () => window.clearTimeout(timeout);
+  }, [showCurtain]);
 
   return (
     <>
@@ -60,16 +86,19 @@ export default function App() {
         </motion.div>
       </AnimatePresence>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`${location.pathname}-curtain`}
-          className="route-curtain"
-          initial={{ y: "100%" }}
-          animate={{ y: ["100%", "0%", "-100%"] }}
-          transition={{ duration: 1, ease: [0.42, 0, 0.58, 1], times: [0, 0.5, 1] }}
-        >
-          <span className="route-label">{routeLabel(location.pathname)}</span>
-        </motion.div>
+      <AnimatePresence>
+        {showCurtain ? (
+          <motion.div
+            key={curtainKey}
+            className="route-curtain"
+            initial={{ y: "100%" }}
+            animate={{ y: ["100%", "0%", "-100%"] }}
+            transition={{ duration: 1, ease: [0.42, 0, 0.58, 1], times: [0, 0.5, 1] }}
+            onAnimationComplete={() => setShowCurtain(false)}
+          >
+            <span className="route-label">{routeLabel(location.pathname)}</span>
+          </motion.div>
+        ) : null}
       </AnimatePresence>
     </>
   );
