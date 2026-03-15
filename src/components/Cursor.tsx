@@ -1,15 +1,16 @@
-import { memo } from "react";
+﻿import { memo } from "react";
 import { useCursor } from "../hooks/useCursor";
 
 function CursorBase() {
-  const { dotRef, ringRef, labelRef, pulseRef } = useCursor();
+  const { crossRef, lineXRef, lineYRef, labelRef, pulseRef } = useCursor();
 
   return (
     <>
-      <div ref={ringRef} className="cursor-ring">
+      <div ref={lineXRef} className="cursor-line-x" />
+      <div ref={lineYRef} className="cursor-line-y" />
+      <div ref={crossRef} className="cursor-cross">
         <span ref={labelRef} className="cursor-label" />
       </div>
-      <div ref={dotRef} className="cursor-dot" />
       <div ref={pulseRef} className="cursor-pulse" />
     </>
   );

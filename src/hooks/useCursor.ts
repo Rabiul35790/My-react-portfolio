@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 
 type CursorMode = "default" | "link" | "project";
 
 export function useCursor() {
-  const dotRef = useRef<HTMLDivElement | null>(null);
-  const ringRef = useRef<HTMLDivElement | null>(null);
+  const crossRef = useRef<HTMLDivElement | null>(null);
+  const lineXRef = useRef<HTMLDivElement | null>(null);
+  const lineYRef = useRef<HTMLDivElement | null>(null);
   const labelRef = useRef<HTMLSpanElement | null>(null);
   const pulseRef = useRef<HTMLDivElement | null>(null);
 
@@ -14,12 +15,13 @@ export function useCursor() {
       return;
     }
 
-    const dot = dotRef.current;
-    const ring = ringRef.current;
+    const cross = crossRef.current;
+    const lineX = lineXRef.current;
+    const lineY = lineYRef.current;
     const label = labelRef.current;
     const pulse = pulseRef.current;
 
-    if (!dot || !ring || !label || !pulse) {
+    if (!cross || !lineX || !lineY || !label || !pulse) {
       return;
     }
 
@@ -31,9 +33,8 @@ export function useCursor() {
     let mode: CursorMode = "default";
 
     const renderMode = () => {
-      ring.dataset.mode = mode;
+      cross.dataset.mode = mode;
       label.textContent = mode === "project" ? "VIEW" : "";
-      dot.style.opacity = mode === "link" || mode === "project" ? "0" : "1";
     };
 
     const move = (event: PointerEvent) => {
@@ -60,11 +61,12 @@ export function useCursor() {
     };
 
     const loop = () => {
-      rx += (x - rx) * 0.17;
-      ry += (y - ry) * 0.17;
+      rx += (x - rx) * 0.18;
+      ry += (y - ry) * 0.18;
 
-      dot.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
-      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
+      cross.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
+      lineX.style.transform = `translate3d(0, ${ry}px, 0)`;
+      lineY.style.transform = `translate3d(${rx}px, 0, 0)`;
 
       raf = requestAnimationFrame(loop);
     };
@@ -80,5 +82,5 @@ export function useCursor() {
     };
   }, []);
 
-  return { dotRef, ringRef, labelRef, pulseRef };
+  return { crossRef, lineXRef, lineYRef, labelRef, pulseRef };
 }
