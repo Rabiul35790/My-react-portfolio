@@ -16,7 +16,7 @@ export const projects: Project[] = [
   {
     id: "ripplix",
     number: "01",
-    title: "Ripplix",
+    title: "Ripplix Web App",
     year: "2025-2026",
     role: "Full-stack Software Developer",
     liveUrl: "https://www.ripplix.com",
@@ -79,6 +79,23 @@ export const projects: Project[] = [
       "/images/project41.png",
       "/images/project42.png",
       "/images/project43.png"
+    ]
+  },
+  {
+    id: "consultency-firm-website",
+    number: "05",
+    title: "Consultency Firm Website",
+    year: "2025",
+    role: "Full Stack Developer",
+    liveUrl: "https://progotitech.com/",
+    description: "A professional website built for a technology consultancy firm to present its services, expertise, and business solutions to potential clients.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    problem: "The consultancy firm needed a clear and professional online presence to explain its services, establish credibility, and help potential clients easily understand how the company can support their business.",
+    solution: "I developed a responsive website with a structured layout and modern design to clearly present the firm's services, expertise, and contact options. The website improves accessibility of information and helps the company communicate its value more effectively to potential clients.",
+    gallery: [
+      "/images/project51.png",
+      "/images/project52.png",
+      "/images/project53.png"
     ]
   }
 ];
