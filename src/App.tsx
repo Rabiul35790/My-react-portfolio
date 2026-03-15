@@ -4,8 +4,8 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { Cursor } from "./components/Cursor";
 import { Navbar } from "./components/Navbar";
 import { useLenis } from "./hooks/useLenis";
+import HomePage from "./pages/HomePage";
 
-const HomePage = lazy(() => import("./pages/HomePage"));
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
 
 function routeLabel(pathname: string) {
