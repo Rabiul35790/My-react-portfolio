@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -41,7 +41,7 @@
 
   body {
     @apply font-body antialiased;
-    cursor: none;
+    cursor: auto;
   }
 
   body::before {
@@ -56,7 +56,7 @@
 
   a,
   button {
-    cursor: none;
+    cursor: auto;
   }
 }
 
@@ -237,11 +237,12 @@
   }
 
   .cursor-cross {
+    --cursor-size: 1.1rem;
     position: fixed;
     top: 0;
     left: 0;
-    width: 1.1rem;
-    height: 1.1rem;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
     z-index: 70;
     pointer-events: none;
     display: flex;
@@ -249,7 +250,7 @@
     justify-content: center;
     color: var(--color-text-1);
     will-change: transform;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color 0.2s ease, width 0.16s ease, height 0.16s ease;
   }
 
   .cursor-cross::before,
@@ -262,25 +263,27 @@
 
   .cursor-cross::before {
     width: 1px;
-    height: 1.1rem;
+    height: var(--cursor-size);
   }
 
   .cursor-cross::after {
-    width: 1.1rem;
+    width: var(--cursor-size);
     height: 1px;
   }
 
   .cursor-cross[data-mode="link"] {
+    --cursor-size: 1.7rem;
     color: var(--color-primary);
   }
 
   .cursor-cross[data-mode="project"] {
+    --cursor-size: 1.9rem;
     color: var(--color-primary);
   }
 
   .cursor-label {
     position: absolute;
-    top: 1.1rem;
+    top: calc(var(--cursor-size) + 0.1rem);
     left: 50%;
     transform: translateX(-50%);
     font-family: "JetBrains Mono", monospace;
@@ -466,7 +469,7 @@
 
 .work-three-wrapper {
   position: relative;
-  margin-top: 1.1rem;
+  margin-top: calc(var(--cursor-size) + 0.1rem);
   width: 100%;
   height: min(80vh, 44rem);
   overflow: hidden;
@@ -638,3 +641,7 @@
     height: 54vh !important;
   }
 }
+
+
+
+

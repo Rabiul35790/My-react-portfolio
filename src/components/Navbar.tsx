@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const links = [
@@ -111,7 +111,7 @@ export function Navbar() {
               <Link
                 key={item.label}
                 to={item.href}
-                className={`nav-link font-mono text-label ${active ? "text-primary" : "text-text2"}`}
+                className={`nav-link inline-flex items-center rounded-sm px-2 py-1 font-mono text-label ${active ? "text-primary" : "text-text2"}`}
                 data-cursor="interactive"
               >
                 {item.label}
@@ -150,3 +150,4 @@ export function Navbar() {
     </header>
   );
 }
+

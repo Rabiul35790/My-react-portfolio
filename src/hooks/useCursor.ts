@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type CursorMode = "default" | "link" | "project";
 
@@ -30,6 +30,8 @@ export function useCursor() {
     let y = window.innerHeight / 2;
     let rx = x;
     let ry = y;
+    const deadZone = 6;
+    const followEase = 0.065;
     let mode: CursorMode = "default";
 
     const renderMode = () => {
@@ -38,8 +40,13 @@ export function useCursor() {
     };
 
     const move = (event: PointerEvent) => {
-      x = event.clientX;
-      y = event.clientY;
+      const dx = Math.abs(event.clientX - x);
+      const dy = Math.abs(event.clientY - y);
+
+      if (dx > deadZone || dy > deadZone) {
+        x = event.clientX;
+        y = event.clientY;
+      }
 
       const target = event.target instanceof Element ? event.target : null;
       if (target?.closest('[data-cursor="project"]')) {
@@ -53,16 +60,16 @@ export function useCursor() {
       renderMode();
     };
 
-    const click = () => {
-      pulse.style.left = `${x}px`;
-      pulse.style.top = `${y}px`;
+    const click = (event: PointerEvent) => {
+      pulse.style.left = `${event.clientX}px`;
+      pulse.style.top = `${event.clientY}px`;
       pulse.classList.remove("cursor-pulse-active");
       window.requestAnimationFrame(() => pulse.classList.add("cursor-pulse-active"));
     };
 
     const loop = () => {
-      rx += (x - rx) * 0.18;
-      ry += (y - ry) * 0.18;
+      rx += (x - rx) * followEase;
+      ry += (y - ry) * followEase;
 
       cross.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
       lineX.style.transform = `translate3d(0, ${ry}px, 0)`;
