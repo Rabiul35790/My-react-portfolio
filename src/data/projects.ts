@@ -53,7 +53,7 @@ export const projects: Project[] = [
     title: "Grocery E-commerce",
     year: "2025",
     role: "Full-Stack Software Developer",
-    liveUrl: "https://ecommerce.rabiul.pro/",
+    liveUrl: "https://ecommerce.rabiul.pro/?lang=en",
     description: "An online grocery e-commerce platform that allows users to browse products, manage carts, and place orders through a simple and fast shopping experience.",
     stack: ["Laravel", "Blade", "Tailwind CSS", "Filament", "MySQL"],
     problem: "Small and medium grocery businesses often lack a simple digital platform to manage products and accept online orders. Many available systems are complex, expensive, or difficult for store owners to manage.",
