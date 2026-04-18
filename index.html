@@ -11,21 +11,27 @@
     <meta property="og:title" content="Rabiul Hasan | Full-Stack Software Developer" />
     <meta property="og:description" content="Portfolio showcasing selected work, process, and engineering craft." />
     <meta property="og:url" content="https://rabiul.pro/" />
-    <meta property="og:image" content="/images/blog.png" />
+    <meta property="og:image" content="/images/profile.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://rabiul.pro/" />
     <meta name="twitter:title" content="Rabiul Hasan | Full-Stack Software Developer" />
     <meta name="twitter:description" content="Portfolio showcasing selected work, process, and engineering craft." />
-    <meta name="twitter:image" content="/images/blog.png" />
+    <meta name="twitter:image" content="/images/profile.png" />
     <script>
       (function () {
         if (!window.location.pathname.startsWith("/blog/")) return;
 
+        var slug = window.location.pathname.replace(/^\/blog\//, "").replace(/\/$/, "");
+        var coverBySlug = {
+          "building-a-self-hosted-background-removal-api": "/images/blog.png"
+        };
+        var cover = coverBySlug[slug] || "/images/blog.png";
+
         var ogImage = document.querySelector('meta[property="og:image"]');
-        if (ogImage) ogImage.setAttribute("content", "/images/blog.png");
+        if (ogImage) ogImage.setAttribute("content", cover);
 
         var twitterImage = document.querySelector('meta[name="twitter:image"]');
-        if (twitterImage) twitterImage.setAttribute("content", "/images/blog.png");
+        if (twitterImage) twitterImage.setAttribute("content", cover);
       })();
     </script>
     <link rel="canonical" href="https://rabiul.pro/" />

@@ -15,7 +15,6 @@ export default function BlogDetailPage() {
   const { slug } = useParams();
   const postIndex = blogPosts.findIndex((post) => post.slug === slug);
   const post = postIndex >= 0 ? blogPosts[postIndex] : null;
-  const socialImage = "/images/blog.png";
 
   useEffect(() => {
     if (!post) {
@@ -33,7 +32,7 @@ export default function BlogDetailPage() {
       title: `${post.title} | Blog by Rabiul Hasan`,
       description: post.excerpt,
       path: `/blog/${post.slug}`,
-      image: socialImage,
+      image: post.coverImage,
       type: "article"
     });
 
@@ -44,7 +43,7 @@ export default function BlogDetailPage() {
       description: post.excerpt,
       datePublished: post.publishedAt,
       dateModified: post.publishedAt,
-      image: toAbsoluteUrl(socialImage),
+      image: toAbsoluteUrl(post.coverImage),
       author: {
         "@type": "Person",
         name: "Rabiul Hasan"
@@ -86,7 +85,7 @@ export default function BlogDetailPage() {
         </div>
       </header>
 
-      <img src={socialImage} alt={post.title} className="blog-hero-image" loading="lazy" />
+      <img src={post.coverImage} alt={post.title} className="blog-hero-image" loading="lazy" />
 
       <article className="mt-10 space-y-6">
         {post.content.map((block, index) => {
