@@ -4,6 +4,9 @@ import { Link, useLocation } from "react-router-dom";
 const links = [
   { href: "/#home", label: "Home", match: "home" },
   { href: "/#work", label: "Work", match: "work" },
+  { href: "/#experience", label: "Experience", match: "experience" },
+  { href: "/#services", label: "Services", match: "services" },
+  { href: "/#blog", label: "Blog", match: "blog" },
   { href: "/#about", label: "About", match: "about" },
   { href: "/#education", label: "Education", match: "education" },
   { href: "/#contact", label: "Contact", match: "contact" }
@@ -83,6 +86,7 @@ export function Navbar() {
   }, [location.pathname]);
 
   const inWork = location.pathname.startsWith("/work/");
+  const inBlog = location.pathname.startsWith("/blog/");
   const hashSection = location.pathname === "/" ? location.hash.replace("#", "") : "";
   const navActiveSection = hashSection || activeSection;
 
@@ -104,9 +108,13 @@ export function Navbar() {
           <img src="/images/logo.png" alt="Rabiul Hasan logo" className="block h-8 w-auto md:h-10" loading="eager" />
         </Link>
 
-        <nav className="hidden items-center gap-9 md:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {links.map((item) => {
-            const active = inWork ? item.match === "work" : navActiveSection === item.match;
+            const active = inWork
+              ? item.match === "work"
+              : inBlog
+                ? item.match === "blog"
+                : navActiveSection === item.match;
             return (
               <Link
                 key={item.label}
@@ -123,7 +131,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((prev) => !prev)}
-          className="font-mono text-label text-text1 md:hidden"
+          className="font-mono text-label text-text1 lg:hidden"
           data-cursor="interactive"
           aria-label="Toggle menu"
           aria-expanded={open}
@@ -133,13 +141,13 @@ export function Navbar() {
       </div>
 
       <div className={`mobile-menu ${open ? "mobile-menu-open" : ""}`}>
-        <div className="flex h-full flex-col items-center justify-center gap-7">
+        <div className="flex h-full flex-col items-center justify-center gap-5 px-6">
           {links.map((item) => (
             <Link
               key={item.label}
               to={item.href}
               onClick={() => setOpen(false)}
-              className="font-display text-5xl text-text1"
+              className="font-display text-4xl text-text1 sm:text-5xl"
               data-cursor="interactive"
             >
               {item.label}

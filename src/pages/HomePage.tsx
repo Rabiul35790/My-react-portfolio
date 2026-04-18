@@ -1,11 +1,17 @@
 import { useEffect } from "react";
 import { Marquee } from "../components/Marquee";
 import { AboutSection } from "../sections/AboutSection";
+import { BlogSection } from "../sections/BlogSection";
 import { ContactSection } from "../sections/ContactSection";
 import { EducationSection } from "../sections/EducationSection";
 import { HeroSection } from "../sections/HeroSection";
 import { ProcessSection } from "../sections/ProcessSection";
+import { ServicesSection } from "../sections/ServicesSection";
 import { WorkSection } from "../sections/WorkSection";
+import { WorkExperienceSection } from "../sections/WorkExperienceSection";
+import { blogPosts } from "../data/blogPosts";
+import { services } from "../data/services";
+import { workExperiences } from "../data/workExperience";
 import { removeJsonLd, setJsonLd, setPageSeo, toAbsoluteUrl } from "../utils/seo";
 
 export default function HomePage() {
@@ -32,7 +38,68 @@ export default function HomePage() {
       ]
     });
 
-    return () => removeJsonLd("home-person-schema");
+    setJsonLd("home-services-schema", {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Software Development Services",
+      itemListElement: services.map((service, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Service",
+          name: service.title,
+          description: service.intro,
+          provider: {
+            "@type": "Person",
+            name: "Rabiul Hasan"
+          }
+        }
+      }))
+    });
+
+    setJsonLd("home-work-experience-schema", {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Work Experience",
+      itemListElement: workExperiences.map((experience, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Role",
+          roleName: experience.role,
+          startDate: experience.period.split(" - ")[0],
+          worksFor: {
+            "@type": "Organization",
+            name: experience.company
+          }
+        }
+      }))
+    });
+
+    setJsonLd("home-blog-schema", {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      name: "Rabiul Hasan Blog",
+      url: toAbsoluteUrl("/#blog"),
+      blogPost: blogPosts.map((post) => ({
+        "@type": "BlogPosting",
+        headline: post.title,
+        datePublished: post.publishedAt,
+        description: post.excerpt,
+        author: {
+          "@type": "Person",
+          name: "Rabiul Hasan"
+        },
+        mainEntityOfPage: toAbsoluteUrl(`/blog/${post.slug}`)
+      }))
+    });
+
+    return () => {
+      removeJsonLd("home-person-schema");
+      removeJsonLd("home-services-schema");
+      removeJsonLd("home-work-experience-schema");
+      removeJsonLd("home-blog-schema");
+    };
   }, []);
 
   return (
@@ -40,9 +107,12 @@ export default function HomePage() {
       <HeroSection />
       <Marquee />
       <WorkSection />
+      <WorkExperienceSection />
+      <ServicesSection />
       <AboutSection />
       <EducationSection />
       <ProcessSection />
+      <BlogSection />
       <ContactSection />
     </main>
   );

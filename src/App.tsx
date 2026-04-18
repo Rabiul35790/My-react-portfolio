@@ -7,10 +7,14 @@ import { useLenis } from "./hooks/useLenis";
 import HomePage from "./pages/HomePage";
 
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
+const BlogDetailPage = lazy(() => import("./pages/BlogDetailPage"));
 
 function routeLabel(pathname: string) {
   if (pathname.startsWith("/work/")) {
     return "WORK";
+  }
+  if (pathname.startsWith("/blog/")) {
+    return "BLOG";
   }
   if (pathname === "/") {
     return "HOME";
@@ -81,6 +85,7 @@ export default function App() {
             <Routes location={location}>
               <Route path="/" element={<HomePage />} />
               <Route path="/work/:id" element={<ProjectDetailPage />} />
+              <Route path="/blog/:slug" element={<BlogDetailPage />} />
             </Routes>
           </Suspense>
         </motion.div>

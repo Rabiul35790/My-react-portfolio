@@ -315,6 +315,23 @@
     object-fit: cover;
   }
 
+  .blog-hero-image {
+    margin-top: 2rem;
+    width: 100%;
+    max-height: 26rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    object-fit: contain;
+    object-position: center;
+  }
+
+  @media (min-width: 768px) {
+    .blog-hero-image {
+      height: 26rem;
+      object-fit: cover;
+    }
+  }
+
   .gallery-image {
     width: 24rem;
     height: 16rem;
