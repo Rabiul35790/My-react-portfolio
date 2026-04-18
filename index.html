@@ -17,6 +17,17 @@
     <meta name="twitter:title" content="Rabiul Hasan | Full-Stack Software Developer" />
     <meta name="twitter:description" content="Portfolio showcasing selected work, process, and engineering craft." />
     <meta name="twitter:image" content="/images/profile.png" />
+    <script>
+      (function () {
+        if (!window.location.pathname.startsWith("/blog/")) return;
+
+        var ogImage = document.querySelector('meta[property="og:image"]');
+        if (ogImage) ogImage.setAttribute("content", "/images/blog.png");
+
+        var twitterImage = document.querySelector('meta[name="twitter:image"]');
+        if (twitterImage) twitterImage.setAttribute("content", "/images/blog.png");
+      })();
+    </script>
     <link rel="canonical" href="https://rabiul.pro/" />
     <link rel="icon" type="image/png" href="/images/favi.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
