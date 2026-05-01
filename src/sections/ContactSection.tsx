@@ -53,7 +53,7 @@ export function ContactSection() {
          
         </a>
         <a
-          href="/resume/resume.pdf"
+          href="/resume/resume-h.pdf"
           download="Rabiul-Hasan-Resume.pdf"
           className="btn-wipe btn-wipe-outline"
           data-cursor="interactive"
