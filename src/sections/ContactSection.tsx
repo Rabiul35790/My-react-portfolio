@@ -38,15 +38,15 @@ export function ContactSection() {
       <h2 className="contact-reveal hero-stroke mt-1 font-display text-section leading-none text-transparent">TOGETHER</h2>
 
       <a
-        href="mailto:rabiul35790@gmail.com"
+        href="mailto:work@rabiul.pro"
         className="contact-reveal mt-8 inline-block font-mono text-2xl text-text1 underline-offset-4 hover:underline"
         data-cursor="interactive"
       >
-        rabiul35790@gmail.com
+        work@rabiul.pro
       </a>
 
       <div className="contact-reveal mt-10 flex flex-wrap items-center justify-center gap-4">
-        <a href="mailto:rabiul35790@gmail.com" className="btn-wipe btn-wipe-solid" data-cursor="interactive">
+        <a href="mailto:work@rabiul.pro" className="btn-wipe btn-wipe-solid" data-cursor="interactive">
         <span>
            Send a Message
         </span>
