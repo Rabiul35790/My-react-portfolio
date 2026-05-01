@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { Cursor } from "./components/Cursor";
 import { Navbar } from "./components/Navbar";
 import { useLenis } from "./hooks/useLenis";
+import { bootstrapPortfolioAutoplay, getPortfolioAudio, tryPlayPortfolioAudio } from "./lib/portfolioAudio";
 import HomePage from "./pages/HomePage";
 
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
@@ -67,6 +68,33 @@ export default function App() {
 
     return () => window.clearTimeout(timeout);
   }, [showCurtain]);
+
+  useEffect(() => {
+    const audio = getPortfolioAudio();
+    if (!audio) {
+      return;
+    }
+
+    bootstrapPortfolioAutoplay();
+    tryPlayPortfolioAudio();
+
+    const unlock = () => {
+      tryPlayPortfolioAudio();
+      window.removeEventListener("pointerdown", unlock);
+      window.removeEventListener("keydown", unlock);
+      window.removeEventListener("touchstart", unlock);
+    };
+
+    window.addEventListener("pointerdown", unlock, { once: true });
+    window.addEventListener("keydown", unlock, { once: true });
+    window.addEventListener("touchstart", unlock, { once: true });
+
+    return () => {
+      window.removeEventListener("pointerdown", unlock);
+      window.removeEventListener("keydown", unlock);
+      window.removeEventListener("touchstart", unlock);
+    };
+  }, []);
 
   return (
     <>
