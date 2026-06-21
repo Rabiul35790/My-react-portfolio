@@ -10,7 +10,7 @@ const routes = [
     route: "/",
     title: "Rabiul Hasan | Full-Stack Software Developer",
     description:
-      "Premium portfolio of Rabiul Hasan, a full-stack software developer focused on product-quality web applications and refined user experiences.",
+      "Rabiul Hasan, a full-stack software developer focused on product-quality web applications and refined user experiences.",
     image: "/images/profile.png",
     h1: "Rabiul Hasan - Full-Stack Software Developer",
     body: "I design and build modern web products that balance clean engineering, scalable backend architecture, and refined user experience. This portfolio showcases selected software projects, product thinking, and practical implementation details across React, TypeScript, Laravel, and API-driven systems. My focus is to solve real business problems with maintainable code, thoughtful interaction design, and reliable delivery. I work across frontend and backend, define clear technical direction, and care deeply about performance, accessibility, and long-term product quality so teams can ship confidently."

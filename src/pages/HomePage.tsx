@@ -19,7 +19,7 @@ export default function HomePage() {
     setPageSeo({
       title: "Rabiul Hasan | Full-Stack Software Developer",
       description:
-        "Premium portfolio of Rabiul Hasan, a full-stack software developer focused on product-quality web applications and refined user experiences.",
+        "Rabiul Hasan, a full-stack software developer focused on product-quality web applications and refined user experiences.",
       path: "/",
       image: "/images/profile.png",
       type: "website"
